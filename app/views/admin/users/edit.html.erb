@@ -1,0 +1,17 @@
+<h1>Edit User</h1>
+<%= form_with model: @user, url: admin_user_path(@user), method: :put do |form| %>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_type %>
+    <%= form.select :user_type, options_for_select(['admin', 'trader'], @user.user_type) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Update' %>
+  </div>
+<% end %>
+<%= link_to 'Back', admin_users_path %>

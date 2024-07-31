@@ -1,2 +1,5 @@
+# app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
-end
+    # before_action :authenticate_user!, except: [:index, :show] # Adjust as necessary
+  end
+  
