@@ -1,17 +1,17 @@
 <h1>All Users</h1>
+
 <table>
   <thead>
     <tr>
       <th>Email</th>
-      <th>User Type</th>
-      <th>Actions</th>
+      <th>Username</th> 
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
-        <td><%= user.user_type %></td>
+        <td><%= user.username %></td> 
         <td>
           <%= link_to 'Show', admin_user_path(user) %>
           <%= link_to 'Edit', edit_admin_user_path(user) %>
@@ -20,3 +20,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
