@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     resource.save
-    debugger
+  
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
