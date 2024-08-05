@@ -1,3 +1,4 @@
+# app/controllers/admin/users_controller.rb
 module Admin
   class UsersController < ApplicationController
     before_action :authenticate_user!
@@ -20,10 +21,17 @@ module Admin
       end
     end
 
+    def approve
+      @user = User.find(params[:id])
+      @user.approve!
+      UserMailer.with(user: @user).account_approved.deliver_later
+      redirect_to admin_users_path, notice: 'User was successfully approved.'
+    end
+
     private
 
     def user_params
-      params.require(:user).permit(:username) # Only permit username
+      params.require(:user).permit(:username, :status)
     end
 
     def authorize_admin
