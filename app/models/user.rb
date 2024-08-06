@@ -1,6 +1,4 @@
-# app/models/user.rb
 class User < ApplicationRecord
-  # Include default devise modules
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -8,6 +6,8 @@ class User < ApplicationRecord
 
   STATUS_PENDING = 'pending'
   STATUS_APPROVED = 'approved'
+
+  has_and_belongs_to_many :stocks
 
   # Callbacks
   after_initialize :set_default_status, if: :new_record?

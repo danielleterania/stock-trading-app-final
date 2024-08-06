@@ -1,0 +1,22 @@
+<h1>Available Stocks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <td><%= stock.name %></td>
+        <td>
+          <%= button_to 'Add to Portfolio', add_to_portfolio_stock_path(stock), method: :patch %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'My Portfolio', portfolios_path %>

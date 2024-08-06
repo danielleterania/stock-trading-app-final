@@ -1,4 +1,3 @@
-# app/controllers/admin/users_controller.rb
 module Admin
   class UsersController < ApplicationController
     before_action :authenticate_user!

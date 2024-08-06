@@ -1,0 +1,18 @@
+<h1>My Portfolio</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <td><%= stock.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

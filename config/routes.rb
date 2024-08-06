@@ -1,4 +1,3 @@
-# config/routes.rb
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: "users/sessions",
@@ -13,6 +12,14 @@ Rails.application.routes.draw do
       end
     end
   end
-  
+
+  resources :stocks, only: [:index] do
+    member do
+      patch :add_to_portfolio
+    end
+  end
+
+  resources :portfolios, only: [:index]
+
   root to: 'home#index'
 end
