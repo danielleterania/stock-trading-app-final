@@ -1,18 +1,11 @@
 <h1>My Portfolio</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
+<% if @stocks.any? %>
+  <ul>
     <% @stocks.each do |stock| %>
-      <tr>
-        <td><%= stock.name %></td>
-      </tr>
+      <li><%= stock.name %></li>
     <% end %>
-  </tbody>
-</table>
-
-
+  </ul>
+<% else %>
+  <p>You have no stocks in your portfolio.</p>
+<% end %>

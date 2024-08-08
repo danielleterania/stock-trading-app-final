@@ -1,3 +1,4 @@
+# app/controllers/stocks_controller.rb
 class StocksController < ApplicationController
   before_action :authenticate_user!
 
@@ -6,8 +7,8 @@ class StocksController < ApplicationController
   end
 
   def add_to_portfolio
-    stock = Stock.find(params[:id])
-    current_user.stocks << stock unless current_user.stocks.include?(stock)
-    redirect_to stocks_path, notice: "#{stock.name} was added to your portfolio."
+   _t @stock = Stock.find(params[:id])
+    current_user.stocks << @stock
+    redirecto portfolios_path, notice: 'Stock was successfully added to your portfolio.'
   end
 end
