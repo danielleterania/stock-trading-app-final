@@ -9,3 +9,5 @@
 <% else %>
   <p>You have no stocks in your portfolio.</p>
 <% end %>
+
+<%= button_to 'Logout', destroy_user_session_path, method: :delete %>
