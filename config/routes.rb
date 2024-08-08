@@ -1,4 +1,3 @@
-# config/routes.rb
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -18,6 +17,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update] do
       member do
         patch :approve
+      end
+      collection do
+        get :pending_traders
       end
     end
   end

@@ -27,6 +27,11 @@ module Admin
       redirect_to admin_users_path, notice: 'User was successfully approved.'
     end
 
+    def pending_traders
+      @pending_traders = User.where(status: 'pending')
+      
+    end
+
     private
 
     def user_params
