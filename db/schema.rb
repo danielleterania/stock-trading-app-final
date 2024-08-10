@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_06_121744) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_10_052327) do
   create_table "stocks", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -22,6 +22,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_121744) do
     t.integer "stock_id", null: false
     t.index ["stock_id"], name: "index_stocks_users_on_stock_id"
     t.index ["user_id"], name: "index_stocks_users_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "transaction_type"
+    t.decimal "amount", precision: 10, scale: 2
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,4 +48,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_06_121744) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "transactions", "users"
 end

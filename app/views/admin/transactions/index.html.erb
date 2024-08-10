@@ -1,0 +1,28 @@
+<h1>All Transactions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Stock</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.id %></td>
+        <td><%= transaction.user.email %></td>
+        <td><%= transaction.stock.name %></td>
+        <td><%= transaction.quantity %></td>
+        <td><%= number_to_currency(transaction.total_price) %></td>
+        <td><%= transaction.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', admin_users_path, class: 'btn btn-secondary' %>

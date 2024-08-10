@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :portfolios, only: [:index]
 
   namespace :admin do
+    resources :transactions, only: [:index]
     resources :users, only: [:index, :show, :edit, :update] do
       member do
         patch :approve
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
       end
     end
   end
+    
 
   root to: 'home#index'
 end
