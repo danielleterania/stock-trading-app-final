@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_10_052327) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_13_113514) do
   create_table "stocks", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "price", precision: 10, scale: 2
   end
 
   create_table "stocks_users", id: false, force: :cascade do |t|
@@ -30,6 +31,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_052327) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "stock_id"
+    t.decimal "total_price", precision: 10, scale: 2
+    t.integer "quantity"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -44,6 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_10_052327) do
     t.string "user_type"
     t.string "username"
     t.string "status", default: "pending"
+    t.decimal "balance", precision: 10, scale: 2, default: "100.0"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

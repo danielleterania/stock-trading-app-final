@@ -3,7 +3,14 @@
 <% if @stocks.any? %>
   <ul>
     <% @stocks.each do |stock| %>
-      <li><%= stock.name %></li>
+      <li>
+        <%= stock.name %> - <%= number_to_currency(stock.price) %>
+        <%= button_to 'Sell from Portfolio', sell_portfolio_path(stock), method: :patch, class: 'btn btn-danger' %>
+        <%= form_with url: buy_portfolio_path(stock), method: :post do %>
+          <%= number_field_tag :quantity, 1, min: 1 %>
+          <%= submit_tag 'Buy More', class: 'btn btn-success' %>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 <% else %>

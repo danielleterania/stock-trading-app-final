@@ -2,18 +2,24 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # Associations
+  has_many :transactions, dependent: :destroy
+  has_many :stocks, through: :transactions 
+  has_and_belongs_to_many :stocks 
+
+  # Validations
   validates :email, presence: true, uniqueness: true
-
-  STATUS_PENDING = 'pending'
-  STATUS_APPROVED = 'approved'
-
-  has_and_belongs_to_many :stocks
 
   # Callbacks
   after_initialize :set_default_status, if: :new_record?
   after_create :send_pending_email
   after_update :send_approved_email, if: :saved_change_to_status?
 
+  # Constants
+  STATUS_PENDING = 'pending'
+  STATUS_APPROVED = 'approved'
+
+  # Methods
   def approve!
     update!(status: STATUS_APPROVED)
   end
